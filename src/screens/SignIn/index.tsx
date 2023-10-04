@@ -22,6 +22,7 @@ export const SignIn = () => {
       <VStack flex={1} px={10}>
         <Image
           source={BackgroundImg}
+          defaultSource={BackgroundImg}
           alt='Pessoas treinando'
           resizeMode='contain'
           position='absolute'
@@ -46,18 +47,17 @@ export const SignIn = () => {
           <Input placeholder='Senha' secureTextEntry />
           <Button title='Acessar' />
         </Center>
-
-        <Center mt={24}>
-          <Text color='gray.100' fontSize='sm' mb={3} fontFamily='body'>
-            Ainda não tem acesso?
-          </Text>
-          <Button
-            title='Criar conta'
-            variant='outline'
-            onPress={handleNewAccount}
-          />
-        </Center>
       </VStack>
+      <Center mb={24} px={10}>
+        <Text color='gray.100' fontSize='sm' mb={3} fontFamily='body'>
+          Ainda não tem acesso?
+        </Text>
+        <Button
+          title='Criar conta'
+          variant='outline'
+          onPress={handleNewAccount}
+        />
+      </Center>
     </ScrollView>
   )
 }

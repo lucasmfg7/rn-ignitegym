@@ -22,6 +22,7 @@ export const SignUp = () => {
       <VStack flex={1} px={10}>
         <Image
           source={BackgroundImg}
+          defaultSource={BackgroundImg}
           alt='Pessoas treinando'
           resizeMode='contain'
           position='absolute'
@@ -47,14 +48,14 @@ export const SignUp = () => {
           <Input placeholder='Senha' secureTextEntry />
           <Button title='Criar e acessar' />
         </Center>
-
+      </VStack>
+      <Center mb={24} px={10}>
         <Button
-          mt={12}
           title='Voltar para login'
           variant='outline'
           onPress={handleGoBack}
         />
-      </VStack>
+      </Center>
     </ScrollView>
   )
 }
