@@ -11,7 +11,7 @@ export const SignIn = () => {
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
-      <VStack flex={1} bg='gray.700' px={10}>
+      <VStack flex={1} px={10}>
         <Image
           source={BackgroundImg}
           alt='Pessoas treinando'
@@ -39,7 +39,7 @@ export const SignIn = () => {
           <Button title='Acessar' />
         </Center>
 
-        <Center mt={12}>
+        <Center mt={24}>
           <Text color='gray.100' fontSize='sm' mb={3} fontFamily='body'>
             Ainda não tem acesso?
           </Text>
