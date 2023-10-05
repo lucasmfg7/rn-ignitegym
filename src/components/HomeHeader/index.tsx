@@ -12,11 +12,11 @@ export const HomeHeader = () => {
         alt='Imagem do usuário'
         mr={4}
       />
-      <VStack>
-        <Text color='gray.100' fontSize='md'>
+      <VStack flex={1}>
+        <Text color='gray.100' fontSize='lg'>
           Olá,
         </Text>
-        <Heading color='gray.100' fontSize='md'>
+        <Heading color='gray.100' fontSize='lg'>
           Lucas
         </Heading>
       </VStack>
