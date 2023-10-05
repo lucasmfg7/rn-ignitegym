@@ -6,12 +6,12 @@ import { Home } from '@screens/Home'
 import { History } from '@screens/History'
 import { Profile } from '@screens/Profile'
 import { Exercise } from '@screens/Exercise'
+import { Platform } from 'react-native'
 import { useTheme } from 'native-base'
 
 import HomeSvg from '@assets/home.svg'
 import HistorySvg from '@assets/history.svg'
 import ProfileSvg from '@assets/profile.svg'
-import { Platform } from 'react-native'
 
 type AppRoutes = {
   home: undefined
