@@ -1,10 +1,11 @@
-import { Center, Text } from 'native-base'
+import { ScreenHeader } from '@components/ScreenHeader'
+import { VStack } from 'native-base'
 import React from 'react'
 
 export const Profile = () => {
   return (
-    <Center flex={1}>
-      <Text>Profile</Text>
-    </Center>
+    <VStack>
+      <ScreenHeader title='Perfil' />
+    </VStack>
   )
 }
