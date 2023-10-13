@@ -1,3 +1,4 @@
+import { Input } from '@components/Input'
 import { ScreenHeader } from '@components/ScreenHeader'
 import { UserPhoto } from '@components/UserPhoto'
 import { Center, ScrollView, Skeleton, Text, VStack } from 'native-base'
@@ -43,6 +44,9 @@ export const Profile = () => {
               Alterar foto
             </Text>
           </TouchableOpacity>
+
+          <Input placeholder='Nome' bg='gray.600' />
+          <Input placeholder='E-mail' bg='gray.600' isDisabled />
         </Center>
       </ScrollView>
     </VStack>
