@@ -11,13 +11,13 @@ export const Home = () => {
     'tríceps',
     'ombros',
   ])
-  const [selectedGroup, setSelectedGroup] = useState('')
   const [exercises, setExercises] = useState([
     'puxada frontal',
     'remada curvada',
     'remada unilateral',
     'levantamento terra',
   ])
+  const [selectedGroup, setSelectedGroup] = useState('costas')
 
   return (
     <VStack flex={1}>
@@ -31,7 +31,9 @@ export const Home = () => {
         renderItem={({ item }) => (
           <Group
             name={item}
-            isActive={selectedGroup === item}
+            isActive={
+              String(selectedGroup).toLowerCase() === String(item).toLowerCase()
+            }
             onPress={() => setSelectedGroup(item)}
           />
         )}
