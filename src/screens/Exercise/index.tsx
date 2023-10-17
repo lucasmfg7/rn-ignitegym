@@ -1,4 +1,4 @@
-import { HStack, Heading, Icon, Text, VStack } from 'native-base'
+import { HStack, Heading, Icon, Image, Text, VStack } from 'native-base'
 import { TouchableOpacity } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
@@ -40,6 +40,20 @@ export const Exercise = () => {
             </Text>
           </HStack>
         </HStack>
+      </VStack>
+
+      <VStack p={8}>
+        <Image
+          w='full'
+          h={80}
+          source={{
+            uri: 'https://williamcarvalhoamaral.files.wordpress.com/2020/01/dorsal-blog.jpg?w=640',
+          }}
+          alt='Imagem do exercício'
+          mb={3}
+          resizeMode='cover'
+          rounded='lg'
+        />
       </VStack>
     </VStack>
   )
