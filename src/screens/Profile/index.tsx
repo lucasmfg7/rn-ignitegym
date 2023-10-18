@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker'
+import * as FileSystem from 'expo-file-system'
+
 import { TouchableOpacity } from 'react-native'
 import {
   Center,
@@ -35,8 +37,14 @@ export function Profile() {
 
       if (selectedPhoto.canceled) return
 
-      if (!selectedPhoto.assets[0].uri)
+      if (selectedPhoto.assets[0].uri) {
+        const photoInfo = await FileSystem.getInfoAsync(
+          selectedPhoto.assets[0].uri
+        )
+        console.log(photoInfo)
+
         setuserPhoto(selectedPhoto.assets[0].uri)
+      }
     } catch (error) {
       console.log(error)
     } finally {
