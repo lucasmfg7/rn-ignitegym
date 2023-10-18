@@ -19,6 +19,9 @@ const PHOTO_SIZE = 33
 
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false)
+  const [userPhoto, setuserPhoto] = useState(
+    'https://avatars.githubusercontent.com/u/95872678?v=4'
+  )
 
   async function handleUserPhotoSelection() {
     const selectedPhoto = await ImagePicker.launchImageLibraryAsync({
@@ -28,9 +31,9 @@ export function Profile() {
       allowsEditing: true,
     })
 
-    console.log(selectedPhoto)
-
     if (selectedPhoto.canceled) return
+
+    setuserPhoto(selectedPhoto.assets[0].uri)
   }
 
   return (
@@ -50,7 +53,7 @@ export function Profile() {
           ) : (
             <UserPhoto
               source={{
-                uri: 'https://avatars.githubusercontent.com/u/95872678?v=4',
+                uri: userPhoto,
               }}
               alt='Foto do usuário'
               size={PHOTO_SIZE}
