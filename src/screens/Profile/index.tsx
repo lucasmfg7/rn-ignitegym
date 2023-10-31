@@ -2,7 +2,7 @@ import { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system'
 
-import { TouchableOpacity } from 'react-native'
+import { Alert, TouchableOpacity } from 'react-native'
 import {
   Center,
   ScrollView,
@@ -38,11 +38,12 @@ export function Profile() {
       if (selectedPhoto.canceled) return
 
       if (selectedPhoto.assets[0].uri) {
-        const photoInfo = await FileSystem.getInfoAsync(
+        const photoInfo = (await FileSystem.getInfoAsync(
           selectedPhoto.assets[0].uri
-        )
-        console.log(photoInfo)
-
+        )) as FileSystem.FileInfo
+        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 5) {
+          Alert.alert('Erro', 'A imagem deve ter no máximo 5MB')
+        }
         setuserPhoto(selectedPhoto.assets[0].uri)
       }
     } catch (error) {
