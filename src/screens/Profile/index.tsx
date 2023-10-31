@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { TouchableOpacity } from 'react-native'
+
 import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system'
 
-import { Alert, TouchableOpacity } from 'react-native'
 import {
   Center,
   ScrollView,
@@ -10,6 +11,7 @@ import {
   Skeleton,
   Text,
   Heading,
+  useToast,
 } from 'native-base'
 
 import { ScreenHeader } from '@components/ScreenHeader'
@@ -24,6 +26,8 @@ export function Profile() {
   const [userPhoto, setuserPhoto] = useState(
     'https://avatars.githubusercontent.com/u/95872678?v=4'
   )
+
+  const toast = useToast()
 
   async function handleUserPhotoSelection() {
     setPhotoIsLoading(true)
@@ -41,8 +45,12 @@ export function Profile() {
         const photoInfo = (await FileSystem.getInfoAsync(
           selectedPhoto.assets[0].uri
         )) as FileSystem.FileInfo
-        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 5) {
-          Alert.alert('Erro', 'A imagem deve ter no máximo 5MB')
+        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 3) {
+          return toast.show({
+            title: 'Erro',
+            description: 'A imagem deve ter no máximo 3MB',
+            bgColor: 'red.500',
+          })
         }
         setuserPhoto(selectedPhoto.assets[0].uri)
       }
