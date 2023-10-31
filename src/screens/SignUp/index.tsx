@@ -6,9 +6,12 @@ import { Input } from '@components/Input'
 import { Button } from '@components/Button'
 import { useNavigation } from '@react-navigation/native'
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
+import { Controller, useForm } from 'react-hook-form'
 
 export const SignUp = () => {
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
+
+  const { control } = useForm()
 
   function handleGoBack() {
     navigation.goBack()
@@ -39,13 +42,55 @@ export const SignUp = () => {
           <Heading color='gray.100' fontSize='xl' mb={6} fontFamily='heading'>
             Crie a sua conta
           </Heading>
-          <Input placeholder='Nome' />
-          <Input
-            placeholder='E-mail'
-            keyboardType='email-address'
-            autoCapitalize='none'
+
+          <Controller
+            control={control}
+            name='name'
+            render={({ field: { onChange, value } }) => (
+              <Input placeholder='Nome' onChangeText={onChange} value={value} />
+            )}
           />
-          <Input placeholder='Senha' secureTextEntry />
+
+          <Controller
+            control={control}
+            name='email'
+            render={({ field: { onChange, value } }) => (
+              <Input
+                placeholder='E-mail'
+                keyboardType='email-address'
+                autoCapitalize='none'
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name='password'
+            render={({ field: { onChange, value } }) => (
+              <Input
+                secureTextEntry
+                placeholder='Senha'
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name='password_confirmation'
+            render={({ field: { onChange, value } }) => (
+              <Input
+                secureTextEntry
+                placeholder='Confirme a Senha'
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+
           <Button title='Criar e acessar' />
         </Center>
       </VStack>
