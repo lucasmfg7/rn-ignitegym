@@ -8,16 +8,23 @@ import { useNavigation } from '@react-navigation/native'
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 import { Controller, useForm } from 'react-hook-form'
 
+type FormDataProps = {
+  name: string
+  email: string
+  password: string
+  password_confirmation: string
+}
+
 export const SignUp = () => {
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit } = useForm<FormDataProps>()
 
   function handleGoBack() {
     navigation.goBack()
   }
 
-  function handleSignUp(data: any) {
+  function handleSignUp(data: FormDataProps) {
     console.log(data)
   }
 
