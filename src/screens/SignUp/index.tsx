@@ -18,7 +18,11 @@ type FormDataProps = {
 export const SignUp = () => {
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
-  const { control, handleSubmit } = useForm<FormDataProps>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormDataProps>({
     defaultValues: {
       name: '',
       email: '',
@@ -71,6 +75,8 @@ export const SignUp = () => {
               required: 'Informe o nome.',
             }}
           />
+
+          <Text color='white'>{errors.name?.message}</Text>
 
           <Controller
             control={control}
