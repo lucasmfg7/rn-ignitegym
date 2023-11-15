@@ -18,7 +18,14 @@ type FormDataProps = {
 export const SignUp = () => {
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
-  const { control, handleSubmit } = useForm<FormDataProps>()
+  const { control, handleSubmit } = useForm<FormDataProps>({
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+    },
+  })
 
   function handleGoBack() {
     navigation.goBack()
