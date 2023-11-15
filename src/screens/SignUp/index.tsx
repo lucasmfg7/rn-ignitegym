@@ -11,10 +11,14 @@ import { Controller, useForm } from 'react-hook-form'
 export const SignUp = () => {
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
-  const { control } = useForm()
+  const { control, handleSubmit } = useForm()
 
   function handleGoBack() {
     navigation.goBack()
+  }
+
+  function handleSignUp(data: any) {
+    console.log(data)
   }
 
   return (
@@ -87,14 +91,19 @@ export const SignUp = () => {
                 placeholder='Confirme a Senha'
                 onChangeText={onChange}
                 value={value}
+                onSubmitEditing={handleSubmit(handleSignUp)}
+                returnKeyType='send'
               />
             )}
           />
 
-          <Button title='Criar e acessar' />
+          <Button
+            title='Criar e acessar'
+            onPress={handleSubmit(handleSignUp)}
+          />
         </Center>
       </VStack>
-      <Center mb={24} px={10}>
+      <Center mb={12} px={10}>
         <Button
           title='Voltar para login'
           variant='outline'
