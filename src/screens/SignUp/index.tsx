@@ -67,6 +67,9 @@ export const SignUp = () => {
             render={({ field: { onChange, value } }) => (
               <Input placeholder='Nome' onChangeText={onChange} value={value} />
             )}
+            rules={{
+              required: 'Informe o nome.',
+            }}
           />
 
           <Controller
