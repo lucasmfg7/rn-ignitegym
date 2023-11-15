@@ -69,14 +69,17 @@ export const SignUp = () => {
             control={control}
             name='name'
             render={({ field: { onChange, value } }) => (
-              <Input placeholder='Nome' onChangeText={onChange} value={value} />
+              <Input
+                placeholder='Nome'
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors.name?.message}
+              />
             )}
             rules={{
               required: 'Informe o nome.',
             }}
           />
-
-          <Text color='white'>{errors.name?.message}</Text>
 
           <Controller
             control={control}
@@ -88,6 +91,7 @@ export const SignUp = () => {
                 autoCapitalize='none'
                 onChangeText={onChange}
                 value={value}
+                errorMessage={errors.email?.message}
               />
             )}
             rules={{
@@ -99,8 +103,6 @@ export const SignUp = () => {
             }}
           />
 
-          <Text color='white'>{errors.email?.message}</Text>
-
           <Controller
             control={control}
             name='password'
@@ -110,6 +112,7 @@ export const SignUp = () => {
                 placeholder='Senha'
                 onChangeText={onChange}
                 value={value}
+                errorMessage={errors.password?.message}
               />
             )}
           />
@@ -125,6 +128,7 @@ export const SignUp = () => {
                 value={value}
                 onSubmitEditing={handleSubmit(handleSignUp)}
                 returnKeyType='send'
+                errorMessage={errors.password?.message}
               />
             )}
           />
