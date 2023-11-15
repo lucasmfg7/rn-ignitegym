@@ -26,8 +26,9 @@ const signUpSchema = yup.object({
     .min(6, 'A senha deve ter no mínimo 6 caracteres'),
   password_confirmation: yup
     .string()
-    .required('Informe a senha')
-    .min(6, 'A senha deve ter no mínimo 6 caracteres'),
+    .required('Confirme a senha')
+    .min(6, 'A senha deve ter no mínimo 6 caracteres')
+    .oneOf([yup.ref('password'), ''], 'As senhas devem ser iguais'),
 })
 
 export const SignUp = () => {
