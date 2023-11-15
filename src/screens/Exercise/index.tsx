@@ -42,6 +42,7 @@ export const Exercise = () => {
             fontSize='lg'
             textTransform='capitalize'
             flexShrink={1}
+            fontFamily='heading'
           >
             Puxada Frontal
           </Heading>

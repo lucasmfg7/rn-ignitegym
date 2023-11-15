@@ -28,7 +28,12 @@ export const ExerciseCard = ({ ...props }: Props) => {
         />
 
         <VStack flex={1}>
-          <Heading textTransform='uppercase' fontSize='md' color='white'>
+          <Heading
+            textTransform='uppercase'
+            fontSize='md'
+            color='white'
+            fontFamily='heading'
+          >
             Puxada alta
           </Heading>
           <Text fontSize='sm' color='gray.200' mt={1} numberOfLines={2}>

@@ -16,7 +16,7 @@ export const HomeHeader = () => {
         <Text color='gray.100' fontSize='lg'>
           Olá,
         </Text>
-        <Heading color='gray.100' fontSize='lg'>
+        <Heading color='gray.100' fontSize='lg' fontFamily='heading'>
           Lucas
         </Heading>
       </VStack>
