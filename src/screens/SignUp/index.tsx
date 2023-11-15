@@ -90,7 +90,16 @@ export const SignUp = () => {
                 value={value}
               />
             )}
+            rules={{
+              required: 'Informe o email.',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'E-mail inválido',
+              },
+            }}
           />
+
+          <Text color='white'>{errors.email?.message}</Text>
 
           <Controller
             control={control}
