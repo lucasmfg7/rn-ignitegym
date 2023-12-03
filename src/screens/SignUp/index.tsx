@@ -1,14 +1,14 @@
-import { VStack, Image, Text, Center, Heading, ScrollView } from 'native-base'
-
-import LogoSvg from '@assets/logo.svg'
-import BackgroundImg from '@assets/background.png'
-import { Input } from '@components/Input'
-import { Button } from '@components/Button'
-import { useNavigation } from '@react-navigation/native'
-import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
+import { Center, Heading, Image, ScrollView, Text, VStack } from 'native-base'
 import { Controller, useForm } from 'react-hook-form'
 import * as yup from 'yup'
+
+import BackgroundImg from '@assets/background.png'
+import LogoSvg from '@assets/logo.svg'
+import { Button } from '@components/Button'
+import { Input } from '@components/Input'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useNavigation } from '@react-navigation/native'
+import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 
 type FormDataProps = {
   name: string
@@ -52,8 +52,15 @@ export const SignUp = () => {
     navigation.goBack()
   }
 
-  function handleSignUp(data: FormDataProps) {
-    console.log(data)
+  function handleSignUp({ name, email, password }: FormDataProps) {
+    fetch('http://192.168.0.54:3333/users', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, password }),
+    })
   }
 
   return (
