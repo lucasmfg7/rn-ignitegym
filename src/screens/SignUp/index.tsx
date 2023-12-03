@@ -1,5 +1,13 @@
 import axios from 'axios'
-import { Center, Heading, Image, ScrollView, Text, VStack } from 'native-base'
+import {
+  Center,
+  Heading,
+  Image,
+  ScrollView,
+  Text,
+  useToast,
+  VStack,
+} from 'native-base'
 import { Controller, useForm } from 'react-hook-form'
 import { Alert } from 'react-native'
 import * as yup from 'yup'
@@ -12,6 +20,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigation } from '@react-navigation/native'
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 import { api } from '@services/api'
+import { AppError } from '@utils/AppError'
 
 type FormDataProps = {
   name: string
@@ -35,6 +44,7 @@ const signUpSchema = yup.object({
 })
 
 export const SignUp = () => {
+  const toast = useToast()
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
   const {
@@ -70,9 +80,16 @@ export const SignUp = () => {
       const response = await api.post('/users', { name, email, password })
       console.log(response.data)
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        Alert.alert(error.response?.data.message)
-      }
+      const isAppError = error instanceof AppError
+      const title = isAppError
+        ? error.message
+        : 'Não foi possível cadastrar o usuário. Tente novamente mais tarde.'
+
+      toast.show({
+        title,
+        placement: 'top',
+        bgColor: 'red.500',
+      })
     }
   }
 
