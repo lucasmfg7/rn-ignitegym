@@ -15,7 +15,7 @@ type FormData = {
 }
 
 export const SignIn = () => {
-  const { signIn } = useAuth()
+  const { signIn, user } = useAuth()
 
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
@@ -29,9 +29,11 @@ export const SignIn = () => {
     navigation.navigate('signUp')
   }
 
-  function handleSignIn({ email, password }: FormData) {
-    signIn(email, password)
+  async function handleSignIn({ email, password }: FormData) {
+    await signIn(email, password)
   }
+
+  console.log('USUÁRIO LOGADO => ', user)
 
   return (
     <ScrollView

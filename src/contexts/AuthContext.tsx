@@ -1,9 +1,10 @@
 import { IUser } from '@models/IUser'
+import { api } from '@services/api'
 import { createContext, useState } from 'react'
 
 interface AuthContextDataProps {
   user: IUser
-  signIn: (email: string, password: string) => void
+  signIn: (email: string, password: string) => Promise<void>
 }
 
 interface AuthContextProviderProps {
@@ -15,20 +16,15 @@ export const AuthContext = createContext<AuthContextDataProps>(
 )
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
-  const [user, setUser] = useState({
-    id: '',
-    name: '',
-    email: '',
-    avatar: '',
-  })
+  const [user, setUser] = useState<IUser>({} as IUser)
 
-  function signIn(email: string, password: string) {
-    setUser({
-      id: '',
-      name: '',
-      email,
-      avatar: '',
-    })
+  async function signIn(email: string, password: string) {
+    try {
+      const { data } = await api.post('/sessions', { email, password })
+      if (data.user) setUser(data.user)
+    } catch (error) {
+      throw error
+    }
   }
 
   return (
