@@ -1,3 +1,10 @@
+import { IUser } from '@models/IUser'
 import { createContext } from 'react'
 
-export const AuthContext = createContext({})
+interface AuthContextDataProps {
+  user: IUser
+}
+
+export const AuthContext = createContext<AuthContextDataProps>(
+  {} as AuthContextDataProps
+)
