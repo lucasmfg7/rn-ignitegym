@@ -1,5 +1,5 @@
 import { IUser } from '@models/IUser'
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
 
 interface AuthContextDataProps {
   user: IUser
@@ -14,15 +14,17 @@ export const AuthContext = createContext<AuthContextDataProps>(
 )
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
+  const [user, setUser] = useState({
+    id: '1',
+    name: 'Lucas Fernandes',
+    email: 'lucas@email.com',
+    avatar: 'lucas.png',
+  })
+
   return (
     <AuthContext.Provider
       value={{
-        user: {
-          id: '1',
-          name: 'Lucas Fernandes',
-          email: 'lucas@email.com',
-          avatar: 'lucas.png',
-        },
+        user,
       }}
     >
       {children}
