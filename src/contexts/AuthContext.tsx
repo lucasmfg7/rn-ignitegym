@@ -3,6 +3,7 @@ import { createContext, useState } from 'react'
 
 interface AuthContextDataProps {
   user: IUser
+  signIn: (email: string, password: string) => void
 }
 
 interface AuthContextProviderProps {
@@ -15,16 +16,26 @@ export const AuthContext = createContext<AuthContextDataProps>(
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState({
-    id: '1',
-    name: 'Lucas Fernandes',
-    email: 'lucas@email.com',
-    avatar: 'lucas.png',
+    id: '',
+    name: '',
+    email: '',
+    avatar: '',
   })
+
+  function signIn(email: string, password: string) {
+    setUser({
+      id: '',
+      name: '',
+      email,
+      avatar: '',
+    })
+  }
 
   return (
     <AuthContext.Provider
       value={{
         user,
+        signIn,
       }}
     >
       {children}
