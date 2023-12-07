@@ -58,8 +58,6 @@ export const SignIn = () => {
     }
   }
 
-  console.log('USUÁRIO LOGADO => ', user)
-
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
