@@ -182,7 +182,7 @@ export const SignUp = () => {
           />
         </Center>
       </VStack>
-      <Center mb={12} px={10}>
+      <Center mb={12} my={8} px={10}>
         <Button
           title='Voltar para login'
           variant='outline'

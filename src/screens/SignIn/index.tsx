@@ -122,7 +122,7 @@ export const SignIn = () => {
           />
         </Center>
       </VStack>
-      <Center mb={24} px={10}>
+      <Center mb={24} mt={12} px={10}>
         <Text color='gray.100' fontSize='sm' mb={3} fontFamily='body'>
           Ainda não tem acesso?
         </Text>
