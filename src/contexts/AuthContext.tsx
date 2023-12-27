@@ -6,6 +6,7 @@ import { createContext, useEffect, useState } from 'react'
 interface AuthContextDataProps {
   user: IUser
   signIn: (email: string, password: string) => Promise<void>
+  isLoadingUserStorageData: boolean
 }
 
 interface AuthContextProviderProps {
@@ -18,6 +19,7 @@ export const AuthContext = createContext<AuthContextDataProps>(
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<IUser>({} as IUser)
+  const [isLoadingUserStorageData, setIsLoadingUserStorageData] = useState(true)
 
   async function signIn(email: string, password: string) {
     try {
@@ -32,8 +34,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   }
 
   async function loadUserData() {
-    const userLogged = await storageUserGet()
-    if (userLogged) setUser(userLogged)
+    try {
+      const userLogged = await storageUserGet()
+      if (userLogged) {
+        setUser(userLogged)
+      }
+    } catch (error) {
+      throw error
+    } finally {
+      setIsLoadingUserStorageData(false)
+    }
   }
 
   useEffect(() => {
@@ -45,6 +55,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       value={{
         user,
         signIn,
+        isLoadingUserStorageData,
       }}
     >
       {children}
