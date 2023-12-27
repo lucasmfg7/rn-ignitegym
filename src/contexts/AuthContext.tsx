@@ -1,5 +1,6 @@
 import { IUser } from '@models/IUser'
 import { api } from '@services/api'
+import { storageUserSave } from '@storage/storageUser'
 import { createContext, useState } from 'react'
 
 interface AuthContextDataProps {
@@ -21,7 +22,10 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   async function signIn(email: string, password: string) {
     try {
       const { data } = await api.post('/sessions', { email, password })
-      if (data.user) setUser(data.user)
+      if (data.user) {
+        setUser(data.user)
+        storageUserSave(data.user)
+      }
     } catch (error) {
       throw error
     }
