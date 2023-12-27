@@ -1,7 +1,7 @@
 import { IUser } from '@models/IUser'
 import { api } from '@services/api'
-import { storageUserSave } from '@storage/storageUser'
-import { createContext, useState } from 'react'
+import { storageUserGet, storageUserSave } from '@storage/storageUser'
+import { createContext, useEffect, useState } from 'react'
 
 interface AuthContextDataProps {
   user: IUser
@@ -30,6 +30,15 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       throw error
     }
   }
+
+  async function loadUserData() {
+    const userLogged = await storageUserGet()
+    if (userLogged) setUser(userLogged)
+  }
+
+  useEffect(() => {
+    loadUserData()
+  }, [])
 
   return (
     <AuthContext.Provider
