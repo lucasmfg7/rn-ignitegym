@@ -52,6 +52,8 @@ export const SignIn = () => {
         ? error.message
         : 'Não foi possível logar, tente novamente mais tarde.'
 
+      setIsLoading(false)
+
       toast.show({ title, placement: 'top', bgColor: 'red.500' })
 
       setIsLoading(false)
